@@ -1,0 +1,12 @@
+﻿<Application x:Class="Sibenice_MVVM.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Sibenice_MVVM"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!--<Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>-->
+        
+    </Application.Resources>
+</Application>

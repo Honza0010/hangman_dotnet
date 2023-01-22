@@ -1,0 +1,115 @@
+﻿<Window x:Class="Sibenice_MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sibenice_MVVM"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Background="#36393F"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.ColumnSpan="6" Background="#252525" MouseDown="Border_MouseDown">
+            <Grid HorizontalAlignment="Stretch">
+                <Label Content="Šibenice" Foreground="Gray" FontWeight="SemiBold"></Label>
+
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button Width="20" Height="20" Padding ="0,0,0,6" Content="&#128469;" Background="Transparent" BorderThickness="0" Foreground="Gray" FontWeight="Bold" Click="ButtonMinimize_Click"></Button>
+                    <Button Width="20" Height="20" Content="&#11036;" Background="Transparent" BorderThickness="0" Foreground="Gray" FontWeight="Bold" Click="WindowStateButton_Click"></Button>
+                    <Button Width="20" Height="20" Content="╳" Background="Transparent" BorderThickness="0" Foreground="Gray" FontWeight="Bold" Click="End_Click"></Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Menu Grid.Row="1" Grid.ColumnSpan="6" Background="#2F3136">
+            <MenuItem Height="30" Header="Hra" Margin="0,0,0,0" Foreground="Gray">
+                <MenuItem Header="Nová hra" Foreground="Black" Command ="{Binding NewGame}">
+                    <MenuItem.Icon>
+                        <Image Source="Icons/playgame.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Hádej" IsEnabled="{Binding EnabledButtons}" Foreground="Black" Command="{Binding Guess}"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Ukonči hru" Foreground="Black" Click="End_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Height="30" Header="Informace" Margin="50,0,0,0" Foreground="Gray" >
+                <MenuItem Header="O hře" Foreground="Black" Command="{Binding Info}">
+                    <MenuItem.Icon>
+                        <Image Source="Icons/info.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <ToolBar Grid.Row="2" Grid.ColumnSpan="6" Background="#2F3136">
+
+            <Button Content="Nová hra" Foreground="Gray" Margin="0,0,30,0" Command ="{Binding NewGame}"/>
+
+
+            <Button Name="btnGuess" Content="Hádej" Margin="0,0,30,0" IsEnabled="{Binding EnabledButtons}" Foreground="Gray" Command="{Binding Guess}" ></Button>
+            <Separator Margin="0,0,30,0"/>
+            <Label Name="mistakeLabel" Content="{Binding MistakeLabel}" Foreground="Gray" />
+        </ToolBar>
+
+
+
+        <Canvas Name="myCanvas" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="3" Margin="10,0,10,0" Height="240" Background="LightGray" >
+            <Canvas.Resources>
+                <local:ConvertBoolVisibility x:Key ="ConvertBoolVisibility"/>
+            </Canvas.Resources>
+            <Polygon Points="40 230, 120 230, 80 190" HorizontalAlignment="Left" VerticalAlignment="Center" Width="234" Stroke="Black" Visibility="{Binding hangman1Visibility, Converter={StaticResource ConvertBoolVisibility}}"/>
+
+            <Line X1="80" Y1="190" X2="80" Y2="20" Stroke="Black" Visibility="{Binding hangman2Visibility, Converter={StaticResource ConvertBoolVisibility}}" />
+
+            <Line X1="80" Y1="20" X2="170" Y2="20" Stroke="Black" Visibility="{Binding hangman3Visibility, Converter={StaticResource ConvertBoolVisibility}}"/>
+
+            <Line X1="80" Y1="50" X2="110" Y2="20" Stroke="Black" Visibility="{Binding hangman4Visibility, Converter={StaticResource ConvertBoolVisibility}}"/>
+
+            <Line X1="170" Y1="20" X2="170" Y2="60" Stroke="Black" Visibility="{Binding hangman5Visibility, Converter={StaticResource ConvertBoolVisibility}}"/>
+
+            <Ellipse Stroke="Black" Width="30" Height="30" Canvas.Top="60" Canvas.Left="155" Visibility="{Binding hangman6Visibility, Converter={StaticResource ConvertBoolVisibility}}"/>
+
+            <Line X1="170" Y1="90" X2="170" Y2="150" Stroke="Black" Visibility="{Binding hangman7Visibility, Converter={StaticResource ConvertBoolVisibility}}"/>
+
+            <Line X1="170" Y1="150" X2="150" Y2="170" Stroke="Black" Visibility="{Binding hangman8Visibility, Converter={StaticResource ConvertBoolVisibility}}"/>
+
+            <Line X1="170" Y1="150" X2="190" Y2="170" Stroke="Black" Visibility="{Binding hangman9Visibility, Converter={StaticResource ConvertBoolVisibility}}"/>
+
+            <Line X1="170" Y1="120" X2="150" Y2="100" Stroke="Black" Visibility="{Binding hangman10Visibility, Converter={StaticResource ConvertBoolVisibility}}"/>
+
+            <Line X1="170" Y1="120" X2="190" Y2="100" Stroke="Black" Visibility="{Binding hangman11Visibility, Converter={StaticResource ConvertBoolVisibility}}"/>
+
+        </Canvas>
+        
+
+        <Label Name="guessWord" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" Margin="100,10,100,10" Content="{Binding GuessedWord}" 
+               VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" Foreground="Gray"></Label>
+
+        <Label Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" Margin="20,20,20,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Použitá písmena/slova:" Foreground="Gray"></Label>
+        <ListBox x:Name="myListBox" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="3" Margin="20,20,20,20" Background="LightGray" ItemsSource="{Binding LBItems}">
+
+        </ListBox>
+    </Grid>
+    
+</Window>
