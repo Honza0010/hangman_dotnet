@@ -89,7 +89,7 @@ namespace Sibenice
             //string server = "localhost";
             //string database = "javasibenice";
             //string username = "root";
-            //string password = "Nerous253";
+            //string password = "";
             //string constring = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + username + ";" + "PASSWORD=" + password + ";";
 
 
